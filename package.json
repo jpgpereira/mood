@@ -1,0 +1,33 @@
+{
+  "name": "mood",
+  "version": "0.0.1",
+  "description": "Hood's mood",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@slack/client": "^3.10.0",
+    "babel-runtime": "^6.20.0",
+    "meteor-node-stubs": "~0.2.4",
+    "yeelight-wifi": "^2.1.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpgpereira/mood.git"
+  },
+  "keywords": [
+    "hood",
+    "mood",
+    "comon",
+    "builduplabs",
+    "iot"
+  ],
+  "author": "João Pereira <joao@builduplabs.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jpgpereira/mood/issues"
+  },
+  "homepage": "https://github.com/jpgpereira/mood#readme"
+}
