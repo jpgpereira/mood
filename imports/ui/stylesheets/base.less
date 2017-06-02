@@ -1,0 +1,53 @@
+@import "{}/imports/ui/stylesheets/mixins.less";
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}
+
+.logo {
+  width: 100px;
+  padding: 20px;
+  position: absolute;
+}
+
+.content {
+  height: 100vh;
+}
+
+.bgGIF {
+  background: url('test.gif') center center no-repeat fixed;
+  background-size: cover;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.bgIMG {
+  background: url('test.png') center center no-repeat fixed;
+  background-size: cover;
+  mix-blend-mode: screen;
+}
+
+.outterMoodButton {
+  position: relative;
+}
+
+.moodButton {
+  background: transparent;
+  border: none;
+  width: 100px !important;
+  height: 100px !important;
+}
+
+.moodButtonSpinner {
+  .moodButton;
+  left: 0;
+  position: absolute;
+}

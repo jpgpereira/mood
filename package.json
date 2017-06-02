@@ -12,11 +12,13 @@
     "@slack/client": "^3.10.0",
     "babel-runtime": "^6.20.0",
     "giphy-api": "^1.2.6",
-    "material-ui": "^1.0.0-alpha.15",
+    "material-ui": "^1.0.0-alpha.16",
     "meteor-node-stubs": "~0.2.4",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-tap-event-plugin": "^2.0.1",
+    "react-touch": "^0.4.2",
     "yeelight-wifi": "^2.1.0"
   },
   "devDependencies": {

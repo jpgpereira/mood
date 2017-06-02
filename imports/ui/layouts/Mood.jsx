@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from '../components/App.jsx';
+import App from '../containers/App.jsx';
 
 const Mood = () => (
   <MuiThemeProvider>
