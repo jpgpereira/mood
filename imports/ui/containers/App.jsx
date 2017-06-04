@@ -7,7 +7,18 @@ export default createContainer(() => {
   const moods = Meteor.subscribe('moods.all');
   const loading = !moods.ready();
   return {
-    moods: Moods.find().fetch(),
+    moods: Moods.find(
+      {
+        _id: {
+          $ne: 'actual',
+        },
+      },
+    ).fetch(),
+    actual: Moods.find(
+      {
+        _id: 'actual',
+      },
+    ).fetch()[0],
     loading,
   };
 }, App);

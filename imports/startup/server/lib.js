@@ -6,19 +6,34 @@ import Constants from './constants';
 
 const calculateMood = (query) => {
   let toRet = '';
+  let toRetMood = {};
   let votes = 0;
   Moods.find().forEach((mood) => {
     const moodQuery = query;
     if (!toRet) {
       toRet = mood._id;
+      toRetMood = mood;
     }
     moodQuery.mood = mood._id;
     const moodVotes = Votes.find(query).fetch().length;
     if (moodVotes > votes) {
       toRet = mood._id;
       votes = moodVotes;
+      toRetMood = mood;
     }
   });
+  Moods.update(
+    {
+      _id: 'actual',
+    },
+    {
+      $set: {
+        name: toRetMood.name,
+        color: toRetMood.color,
+        id: toRetMood._id,
+      },
+    },
+  );
   return toRet;
 };
 

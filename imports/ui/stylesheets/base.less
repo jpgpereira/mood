@@ -10,6 +10,12 @@ body {
   height: 100vh;
 }
 
+.infoLogo {
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+
 .logo {
   width: 100px;
   padding: 20px;
@@ -20,8 +26,18 @@ body {
   height: 100vh;
 }
 
+.preloader_content {
+  .content;
+  background: black !important;
+}
+
+.preloader_spinner {
+  color: white !important;
+}
+
 .bgGIF {
-  background: url('test.gif') center center no-repeat fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
   left: 0;
@@ -29,10 +45,14 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
 .bgIMG {
-  background: url('test.png') center center no-repeat fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-size: cover;
   mix-blend-mode: screen;
+  -webkit-transition: background-image 1.5s ease-in-out;
+  transition: background-image 1.5s ease-in-out;
 }
 
 .outterMoodButton {
@@ -44,10 +64,45 @@ body {
   border: none;
   width: 100px !important;
   height: 100px !important;
+  color: white !important;
+  background-color: transparent !important;
+  border-radius: 50%;
+  &:hover {
+    background-color: white !important;
+    color: black !important;
+  }
+  &:active {
+    background-color: white !important;
+    color: black !important;
+  }
 }
 
 .moodButtonSpinner {
   .moodButton;
   left: 0;
   position: absolute;
+}
+
+.voteConfirm {
+  position: absolute;
+  bottom: 20px;
+}
+
+.joyful {
+  color: #fff200 !important;
+}
+.powerful {
+  color: #ff7f18 !important;
+}
+.peaceful {
+  color: #acf04f !important;
+}
+.scared {
+  color: #32528b !important;
+}
+.sad {
+  color: #8871a7 !important;
+}
+.mad {
+  color: #ff0000 !important;
 }

@@ -42,5 +42,12 @@ module.exports = {
       brightness: '100',
       tags: [],
     },
+    actual: {
+      _id: 'actual',
+      id: 'joyful',
+      name: 'Joyful',
+      color: '#fff200',
+      brightness: '100',
+    },
   },
 };
