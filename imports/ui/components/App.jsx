@@ -26,7 +26,6 @@ export default class App extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.actual);
     this.setState({
       bg: nextProps.actual ? `url(moods/${nextProps.actual.id}/bg1.png)` : 'url(moods/joyful/bg1.png)',
     });

@@ -9,4 +9,5 @@ module.exports = {
     const webhook = new IncomingWebhook(WEBHOOK_URL);
     webhook.send(message);
   },
+  askMood: () => {},
 };
