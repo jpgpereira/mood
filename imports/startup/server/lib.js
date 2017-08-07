@@ -41,8 +41,9 @@ const lightMood = () => {
   const actual = calculateMood({});
   _.map(Constants.moods, (m) => {
     if (m._id === actual) {
-      Yeelight.setBrightness(m.brightness);
-      Yeelight.changeColor(m.color);
+      // Yeelight.setBrightness(m.brightness);
+      // Yeelight.changeColor(m.color);
+      Yeelight.triggerIFTTT(m._id);
     }
   });
 };

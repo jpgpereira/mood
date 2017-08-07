@@ -6,6 +6,31 @@ import Modal from 'react-modal';
 import Mood from './Mood.jsx';
 import Loading from './Loading.jsx';
 
+const modalStyle = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.75)',
+  },
+  content: {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    bottom: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px',
+  },
+};
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +48,7 @@ export default class App extends React.Component {
   componentWillMount() {
     const intervalId = setInterval(this._updateBg, 3500);
     this.setState({ intervalId });
+    Modal.setAppElement('body');
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,7 +106,7 @@ export default class App extends React.Component {
         <div className="bgIMG" style={{ backgroundImage: this.state.bg }}>
           <button
             className="infoLogo"
-            onClick={() => { this.setState({ info: true }); }}
+            // onClick={() => { this.setState({ info: true }); }}
           >
             <img className="logo" alt="Mood" src="/logo.png" />
           </button>
@@ -104,16 +130,17 @@ export default class App extends React.Component {
                 )
               }
             </Grid>
-            {this.state.voteMood &&
+            {/* {this.state.voteMood &&
               <Grid item className="voteConfirm">
                 Voted!
               </Grid>
-            }
+            } */}
           </Grid>
           <Modal
             isOpen={this.state.info}
             onRequestClose={() => { this.setState({ info: false }); }}
             contentLabel="Info"
+            style={modalStyle}
           >
             <h1>Modal Content</h1>
             <p>Etc.</p>

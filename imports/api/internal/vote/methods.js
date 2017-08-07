@@ -31,11 +31,12 @@ export const addVote = new ValidatedMethod({
       Meteor.setTimeout(() => {
         _.map(Constants.moods, (m) => {
           if (m._id === mood) {
-            Yeelight.setBrightness(m.brightness);
-            Yeelight.changeColor(m.color);
+            // Yeelight.setBrightness(m.brightness);
+            // Yeelight.changeColor(m.color);
+            Yeelight.triggerIFTTT(m._id);
           }
         });
-        Meteor.sleep(2000);
+        Meteor.sleep(10000);
         Functions.lightMood();
       }, 10);
     }
@@ -57,10 +58,8 @@ export const getVotes = new ValidatedMethod({
     });
   },
   run({ mood }) {
-    console.log('get votes');
     const query = {};
     if (mood) {
-      console.log(mood);
       query.mood = mood;
     }
     return Votes.find(query).fetch();

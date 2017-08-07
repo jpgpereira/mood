@@ -31,7 +31,7 @@ module.exports = {
     sad: {
       _id: 'sad',
       name: 'Sad',
-      color: '#8871a7',
+      color: '#5c2f99',
       brightness: '100',
       tags: [],
     },

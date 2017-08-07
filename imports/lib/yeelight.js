@@ -1,4 +1,5 @@
 import YeelightSearch from 'yeelight-wifi';
+import IFTTTMaker from 'iftttmaker';
 
 const y = new YeelightSearch();
 
@@ -54,5 +55,8 @@ module.exports = {
     lightBulbs.forEach((lightBulb) => {
       lightBulb.setBrightness(brightness);
     });
+  },
+  triggerIFTTT: (mood) => {
+    IFTTTMaker(process.env.IFTTT_MAKER_KEY).send(`mood_${mood}`);
   },
 };
