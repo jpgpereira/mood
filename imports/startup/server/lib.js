@@ -37,6 +37,14 @@ const calculateMood = (query) => {
   return toRet;
 };
 
+const currentMood = () => (
+  Moods.findOne(
+    {
+      _id: 'actual',
+    },
+  )
+);
+
 const lightMood = () => {
   const actual = calculateMood({});
   _.map(Constants.moods, (m) => {
@@ -50,5 +58,6 @@ const lightMood = () => {
 
 export default {
   calculateMood,
+  currentMood,
   lightMood,
 };

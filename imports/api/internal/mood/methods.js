@@ -8,7 +8,7 @@ import Functions from '../../../startup/server/lib.js';
  * @param  {[type]} team         [description]
  * @return [type]                  [description]
 */
-const getMood = new ValidatedMethod({
+export const getMood = new ValidatedMethod({
   name: 'mood.get',
   validate(data) {
     check(data, {
@@ -24,4 +24,15 @@ const getMood = new ValidatedMethod({
   },
 });
 
-export default getMood;
+/**
+ * [getMood description]
+ * @param  {[type]} team         [description]
+ * @return [type]                  [description]
+*/
+export const currentMood = new ValidatedMethod({
+  name: 'mood.current',
+  validate() {},
+  run() {
+    return Functions.currentMood();
+  },
+});
