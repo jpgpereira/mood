@@ -12,6 +12,7 @@ colors = {
   colorsSad: [[24, 9, 34], [55, 28, 74], [38, 16, 53], [59, 28, 79]],
   colorsMad: [[255, 0, 0], [148, 2, 2], [183, 0, 0], [237, 70, 19]],
 }
+downTimer = null;
 
 $(document).ready(() => {
   colorSelected = colors['colorsNeutral'];
@@ -36,10 +37,10 @@ $(document).ready(() => {
       }
     }
   );
-  $('.buttons div').mousedown('click', (e) => {
+  $('.buttons div').on('mousedown touchstart', (e) => {
     if (canVote) {
-      clearTimeout(this.downTimer);
-      this.downTimer = setTimeout(() => {
+      clearTimeout(downTimer);
+      downTimer = setTimeout(() => {
         canVote = false;
         $.ripple.destroy();
         const mood = $(e.currentTarget)[0].id;
@@ -83,8 +84,8 @@ $(document).ready(() => {
         );
       }, 1000);
     }
-  }).mouseup((e) => {
-    clearTimeout(this.downTimer);
+  }).on('touchend mouseup', () => {
+    clearTimeout(downTimer);
   });
 
   $('#logo').on('click', () => {
