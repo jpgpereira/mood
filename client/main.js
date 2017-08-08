@@ -26,14 +26,11 @@ $(document).ready(() => {
     'mood.current',
     (err, res) => {
       if (!err) {
-        // var element = $('#dominant').detach();
-        // $(`#${res.id}`).append(element);
         $('.buttons div').removeClass('selected');
-        $(`#${res.id}`).addClass('selected');
+        // $(`#${res.id}`).addClass('selected');
         currentMood = res.id;
         colorSelected = colors[`colors${res.name}`];
-      } else {
-        console.log(err);
+        $('#title span').html(res.name);
       }
     }
   );
@@ -52,6 +49,10 @@ $(document).ready(() => {
           (err) => {
             if (!err) {
               const moodName = mood.charAt(0).toUpperCase() + mood.slice(1);
+              $('#title_vote span').html(mood);
+              $('#title').fadeOut();
+              $('#subtitle').fadeOut();
+              $('#title_vote').fadeIn();
               $('.buttons div').removeClass('selected');
               $(`#${mood}`).addClass('selected');
               $(`#vote${moodName}`).fadeIn('slow');
@@ -62,10 +63,12 @@ $(document).ready(() => {
                     (err, res) => {
                       if (!err) {
                         colorSelected = colors[`colors${res.name}`];
-                        // var element = $('#dominant').detach();
-                        // $(`#${res.id}`).append(element);
+                        $('#title span').html(res.name);
+                        $('#title_vote').fadeOut();
+                        $('#title').fadeIn();
+                        $('#subtitle').fadeIn();
                         $('.buttons div').removeClass('selected');
-                        $(`#${res.id}`).addClass('selected');
+                        // $(`#${res.id}`).addClass('selected');
                         $(`#vote${moodName}`).fadeOut('slow');
                         $(".buttons div").ripple({
                           scaleMode: false,
@@ -77,8 +80,6 @@ $(document).ready(() => {
                   );
                 }, 7000
               );
-            } else {
-              console.log(err);
             }
           },
         );
@@ -91,7 +92,13 @@ $(document).ready(() => {
   $('#logo').on('click', () => {
     $('#layer').fadeIn();
   });
+  $('.about').on('click', () => {
+    $('#layer').fadeIn();
+  });
   $('#closeOverlay').on('click', () => {
+    $('#layer').fadeOut();
+  });
+  $('.linkClose').on('click', () => {
     $('#layer').fadeOut();
   });
 });
