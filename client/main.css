@@ -1,5 +1,16 @@
 /* CSS declarations go here */
 
+.turnDeviceNotification {
+  position:fixed;
+  top: 0;
+  left:0;
+  height:100%;
+  width:100%;
+  display: none;
+  background-image: url('/landscape_alert.png');
+  background-size: contain;
+}
+
 #logo {
   height: 25px;
   padding: 15px;
@@ -19,7 +30,7 @@ body {
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
-#title, #title_vote {
+#title {
   font-weight: 400;
   width: 90%;
   height: 80%;
@@ -37,15 +48,7 @@ body {
   font-family: 'Lato', sans-serif;
 }
 
-#title_vote {
-  display: none;
-}
-
-#title span, #title_vote span {
-  text-transform: uppercase;
-}
-
-#subtitle {
+#subtitle, #subtitle_vote {
   font-weight: 400;
   width: 90%;
   height: 65%;
@@ -61,6 +64,14 @@ body {
   color: #FFF;
   font-size: 1.5em;
   font-family: 'Lato', sans-serif;
+}
+
+#subtitle_vote {
+  display: none;
+}
+
+#subtitle span, #subtitle_vote span {
+  text-transform: uppercase;
 }
 
 #gradient1 {
@@ -422,11 +433,11 @@ body {
 }
 
 @media (max-width: 580px) {
-  #title, #title_vote {
+  #title {
     font-size: 2em;
     width: 90%;
   }
-  #subtitle {
+  #subtitle, #subtitle_vote {
     font-size: 1em;
     width: 90%;
     height: 65%;
@@ -443,11 +454,11 @@ body {
 }
 
 @media (max-width: 455px) {
-  #title, #title_vote {
+  #title {
     font-size: 1.4em;
     width: 95%;
   }
-  #subtitle {
+  #subtitle, #subtitle_vote {
     font-size: 1em;
     width: 95%;
     height: 67%;

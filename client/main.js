@@ -30,7 +30,7 @@ $(document).ready(() => {
         // $(`#${res.id}`).addClass('selected');
         currentMood = res.id;
         colorSelected = colors[`colors${res.name}`];
-        $('#title span').html(res.name);
+        $('#subtitle span').html(res.name);
       }
     }
   );
@@ -49,10 +49,10 @@ $(document).ready(() => {
             (err) => {
               if (!err) {
                 const moodName = mood.charAt(0).toUpperCase() + mood.slice(1);
-                $('#title_vote span').html(mood);
-                $('#title').fadeOut();
+                $('#subtitle_vote span').html(mood);
+                // $('#title').fadeOut();
                 $('#subtitle').fadeOut();
-                $('#title_vote').fadeIn();
+                $('#subtitle_vote').fadeIn();
                 $('.buttons div').removeClass('selected');
                 $(`#${mood}`).addClass('selected');
                 $(`#vote${moodName}`).fadeIn('slow');
@@ -63,9 +63,9 @@ $(document).ready(() => {
                       (err, res) => {
                         if (!err) {
                           colorSelected = colors[`colors${res.name}`];
-                          $('#title span').html(res.name);
-                          $('#title_vote').fadeOut();
-                          $('#title').fadeIn();
+                          $('#subtitle span').html(res.name);
+                          $('#subtitle_vote').fadeOut();
+                          // $('#title').fadeIn();
                           $('#subtitle').fadeIn();
                           $('.buttons div').removeClass('selected');
                           // $(`#${res.id}`).addClass('selected');
@@ -155,6 +155,30 @@ $(document).ready(() => {
   $('.linkClose').on('click', () => {
     $('#layer').fadeOut();
   });
+
+  if ($(window).width() < 768) {
+    if (window.matchMedia("(orientation: landscape)").matches) {
+      $('#app').hide();
+      $('.turnDeviceNotification').show();
+    } else {
+      $('#app').show();
+      $('.turnDeviceNotification').hide();
+    }
+    $(window).on('orientationchange', () => {
+      setTimeout(
+        () => {
+          if (window.matchMedia("(orientation: landscape)").matches) {
+            $('#app').hide();
+            $('.turnDeviceNotification').show();
+          } else {
+            $('#app').show();
+            $('.turnDeviceNotification').hide();
+          }
+        },
+        100,
+      );
+    });
+  }
 });
 
 updateGradient1 = () => {
