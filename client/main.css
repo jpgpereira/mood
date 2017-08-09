@@ -205,7 +205,7 @@ body {
 }
 
 .buttons div .legitRipple-ripple {
-  transition-duration: .2s, .1s;
+  transition-duration: 1s;
 }
 
 #layer {

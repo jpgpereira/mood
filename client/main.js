@@ -19,7 +19,7 @@ $(document).ready(() => {
   setInterval(updateGradient1, 20);
   setInterval(updateGradient2, 20);
   $(".buttons div").ripple({
-    scaleMode: false,
+    scaleMode: true,
     maxDiameter: "100%"
   });
   Meteor.call(
@@ -34,60 +34,114 @@ $(document).ready(() => {
       }
     }
   );
-  $('.buttons div').on('mousedown touchstart', (e) => {
+  $('.buttons div').on('tap click', (e) => {
     if (canVote) {
-      clearTimeout(downTimer);
-      downTimer = setTimeout(() => {
-        canVote = false;
-        $.ripple.destroy();
-        const mood = $(e.currentTarget)[0].id;
-        Meteor.call(
-          'votes.add',
-          {
-            mood,
-          },
-          (err) => {
-            if (!err) {
-              const moodName = mood.charAt(0).toUpperCase() + mood.slice(1);
-              $('#title_vote span').html(mood);
-              $('#title').fadeOut();
-              $('#subtitle').fadeOut();
-              $('#title_vote').fadeIn();
-              $('.buttons div').removeClass('selected');
-              $(`#${mood}`).addClass('selected');
-              $(`#vote${moodName}`).fadeIn('slow');
-              setTimeout(
-                () => {
-                  Meteor.call(
-                    'mood.current',
-                    (err, res) => {
-                      if (!err) {
-                        colorSelected = colors[`colors${res.name}`];
-                        $('#title span').html(res.name);
-                        $('#title_vote').fadeOut();
-                        $('#title').fadeIn();
-                        $('#subtitle').fadeIn();
-                        $('.buttons div').removeClass('selected');
-                        // $(`#${res.id}`).addClass('selected');
-                        $(`#vote${moodName}`).fadeOut('slow');
-                        $(".buttons div").ripple({
-                          scaleMode: false,
-                          maxDiameter: "100%"
-                        });
-                        canVote = true;
+      canVote = false;
+      const mood = $(e.currentTarget)[0].id;
+      setTimeout(
+        () => {
+          $.ripple.destroy();
+          Meteor.call(
+            'votes.add',
+            {
+              mood,
+            },
+            (err) => {
+              if (!err) {
+                const moodName = mood.charAt(0).toUpperCase() + mood.slice(1);
+                $('#title_vote span').html(mood);
+                $('#title').fadeOut();
+                $('#subtitle').fadeOut();
+                $('#title_vote').fadeIn();
+                $('.buttons div').removeClass('selected');
+                $(`#${mood}`).addClass('selected');
+                $(`#vote${moodName}`).fadeIn('slow');
+                setTimeout(
+                  () => {
+                    Meteor.call(
+                      'mood.current',
+                      (err, res) => {
+                        if (!err) {
+                          colorSelected = colors[`colors${res.name}`];
+                          $('#title span').html(res.name);
+                          $('#title_vote').fadeOut();
+                          $('#title').fadeIn();
+                          $('#subtitle').fadeIn();
+                          $('.buttons div').removeClass('selected');
+                          // $(`#${res.id}`).addClass('selected');
+                          $(`#vote${moodName}`).fadeOut('slow');
+                          $(".buttons div").ripple({
+                            scaleMode: false,
+                            maxDiameter: "100%"
+                          });
+                          canVote = true;
+                        }
                       }
-                    }
-                  );
-                }, 7000
-              );
-            }
-          },
-        );
-      }, 1000);
+                    );
+                  }, 7000
+                );
+              }
+            },
+          );
+        },
+        1000,
+      );
     }
-  }).on('touchend mouseup', () => {
-    clearTimeout(downTimer);
   });
+  // $('.buttons div').on('mousedown touchstart', (e) => {
+  //   if (canVote) {
+  //     clearTimeout(downTimer);
+  //     downTimer = setTimeout(() => {
+  //       canVote = false;
+  //       $.ripple.destroy();
+  //       const mood = $(e.currentTarget)[0].id;
+  //       Meteor.call(
+  //         'votes.add',
+  //         {
+  //           mood,
+  //         },
+  //         (err) => {
+  //           if (!err) {
+  //             const moodName = mood.charAt(0).toUpperCase() + mood.slice(1);
+  //             $('#title_vote span').html(mood);
+  //             $('#title').fadeOut();
+  //             $('#subtitle').fadeOut();
+  //             $('#title_vote').fadeIn();
+  //             $('.buttons div').removeClass('selected');
+  //             $(`#${mood}`).addClass('selected');
+  //             $(`#vote${moodName}`).fadeIn('slow');
+  //             setTimeout(
+  //               () => {
+  //                 Meteor.call(
+  //                   'mood.current',
+  //                   (err, res) => {
+  //                     if (!err) {
+  //                       colorSelected = colors[`colors${res.name}`];
+  //                       $('#title span').html(res.name);
+  //                       $('#title_vote').fadeOut();
+  //                       $('#title').fadeIn();
+  //                       $('#subtitle').fadeIn();
+  //                       $('.buttons div').removeClass('selected');
+  //                       // $(`#${res.id}`).addClass('selected');
+  //                       $(`#vote${moodName}`).fadeOut('slow');
+  //                       $(".buttons div").ripple({
+  //                         scaleMode: false,
+  //                         maxDiameter: "100%"
+  //                       });
+  //                       canVote = true;
+  //                     }
+  //                   }
+  //                 );
+  //               }, 7000
+  //             );
+  //           }
+  //         },
+  //       );
+  //     }, 1000);
+  //   }
+  // }).on('touchend mouseup', () => {
+  //   clearTimeout(downTimer);
+  // });
 
   $('#logo').on('click', () => {
     $('#layer').fadeIn();
