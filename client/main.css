@@ -16,6 +16,7 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 #title, #title_vote {
@@ -205,6 +206,7 @@ body {
 }
 
 .buttons div .legitRipple-ripple {
+  opacity: 1 !important;
   transition-duration: 1s;
 }
 
