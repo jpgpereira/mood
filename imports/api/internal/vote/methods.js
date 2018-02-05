@@ -8,9 +8,10 @@ import Functions from '../../../startup/server/lib';
 import Votes from '.';
 
 /**
- * [addVote description]
- * @param  {[type]} team         [description]
- * @return [type]                  [description]
+ * Add a new vote entry to database
+ * @param  {string} mood    Mood voted
+ * @param  {string} user    User that voted
+ * @return {object}         _id for new vote
 */
 export const addVote = new ValidatedMethod({
   name: 'votes.add',
@@ -31,8 +32,6 @@ export const addVote = new ValidatedMethod({
       Meteor.setTimeout(() => {
         _.map(Constants.moods, (m) => {
           if (m._id === mood) {
-            // Yeelight.setBrightness(m.brightness);
-            // Yeelight.changeColor(m.color);
             Yeelight.triggerIFTTT(m._id);
           }
         });
@@ -46,9 +45,9 @@ export const addVote = new ValidatedMethod({
 });
 
 /**
- * [getVotes description]
- * @param  {[type]} team         [description]
- * @return [type]                  [description]
+ * Returns list of votes
+ * @param  {string} mood    Mood to filter votes
+ * @return {Array}          All votes, or filtered by mood
 */
 export const getVotes = new ValidatedMethod({
   name: 'votes.get',
